@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <iomanip>
 
 using namespace std;
 
@@ -65,17 +66,19 @@ int main(){
 	ofstream file("value.txt");
 	ofstream fout("value_function.txt");
 
-	cout << "Enter value for N (N*h = 1) and J ( J*tao = 1):" << endl;
-	cin >> N >> J;
 
-	double tao = double(1)/J;
-	double h =double(1)/N;
+	double tao = 0.01;
+	double h = 0.01;
 	double a = 0.032;
+
+	N = 1 / h;
+	J = 1 / tao;
+
 
 	double A = (J + 2* a*pow(N, 2));
 	double B = (-a * pow(N, 2));
 
-	double* array = new double[N+1]; 
+	
 	double* vector_V = new double[N];
 	double* vector_U = new double[N];
 	double* vector_b = new double[N+1];
@@ -148,5 +151,6 @@ int main(){
 	file.close();
 	fout.close();
 	cout << maxim<< endl;
+	cout << fixed << setprecision(10) << tao + pow(h, 2) << endl;
 	return 0 ;
 }
